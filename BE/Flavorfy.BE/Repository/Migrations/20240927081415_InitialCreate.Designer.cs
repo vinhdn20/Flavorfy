@@ -12,7 +12,7 @@ using Repository;
 namespace Repository.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240925030911_InitialCreate")]
+    [Migration("20240927081415_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -31,10 +31,10 @@ namespace Repository.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<Guid>("CreateId")
+                    b.Property<Guid>("CreatedById")
                         .HasColumnType("uuid");
 
-                    b.Property<long>("CreateTime")
+                    b.Property<long>("CreatedTime")
                         .HasColumnType("bigint");
 
                     b.Property<string>("Email")
@@ -45,6 +45,12 @@ namespace Repository.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<Guid>("ModifiedById")
+                        .HasColumnType("uuid");
+
+                    b.Property<long>("ModifiedTime")
+                        .HasColumnType("bigint");
+
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("text");
@@ -52,18 +58,8 @@ namespace Repository.Migrations
                     b.Property<int>("TypeAccount")
                         .HasColumnType("integer");
 
-                    b.Property<Guid>("UpdateId")
-                        .HasColumnType("uuid");
-
-                    b.Property<long>("UpdateTime")
-                        .HasColumnType("bigint");
-
                     b.Property<Guid>("UserId")
                         .HasColumnType("uuid");
-
-                    b.Property<string>("UserName")
-                        .IsRequired()
-                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
@@ -85,10 +81,16 @@ namespace Repository.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<Guid>("CreateId")
+                    b.Property<Guid>("CreatedById")
                         .HasColumnType("uuid");
 
-                    b.Property<long>("CreateTime")
+                    b.Property<long>("CreatedTime")
+                        .HasColumnType("bigint");
+
+                    b.Property<Guid>("ModifiedById")
+                        .HasColumnType("uuid");
+
+                    b.Property<long>("ModifiedTime")
                         .HasColumnType("bigint");
 
                     b.Property<long>("NumLike")
@@ -99,12 +101,6 @@ namespace Repository.Migrations
 
                     b.Property<Guid>("PostId")
                         .HasColumnType("uuid");
-
-                    b.Property<Guid>("UpdateId")
-                        .HasColumnType("uuid");
-
-                    b.Property<long>("UpdateTime")
-                        .HasColumnType("bigint");
 
                     b.HasKey("Id");
 
@@ -128,10 +124,16 @@ namespace Repository.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<Guid>("CreateId")
+                    b.Property<Guid>("CreatedById")
                         .HasColumnType("uuid");
 
-                    b.Property<long>("CreateTime")
+                    b.Property<long>("CreatedTime")
+                        .HasColumnType("bigint");
+
+                    b.Property<Guid>("ModifiedById")
+                        .HasColumnType("uuid");
+
+                    b.Property<long>("ModifiedTime")
                         .HasColumnType("bigint");
 
                     b.Property<long>("NumLike")
@@ -143,12 +145,6 @@ namespace Repository.Migrations
 
                     b.Property<int>("TypeOfPost")
                         .HasColumnType("integer");
-
-                    b.Property<Guid>("UpdateId")
-                        .HasColumnType("uuid");
-
-                    b.Property<long>("UpdateTime")
-                        .HasColumnType("bigint");
 
                     b.HasKey("Id");
 
@@ -163,16 +159,16 @@ namespace Repository.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<Guid>("CreateId")
+                    b.Property<Guid>("CreatedById")
                         .HasColumnType("uuid");
 
-                    b.Property<long>("CreateTime")
+                    b.Property<long>("CreatedTime")
                         .HasColumnType("bigint");
 
-                    b.Property<Guid>("UpdateId")
+                    b.Property<Guid>("ModifiedById")
                         .HasColumnType("uuid");
 
-                    b.Property<long>("UpdateTime")
+                    b.Property<long>("ModifiedTime")
                         .HasColumnType("bigint");
 
                     b.Property<string>("UserName")
