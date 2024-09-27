@@ -1,21 +1,17 @@
-import React from 'react';
+import {useEffect} from 'react';
 import { View, Text, ActivityIndicator } from 'react-native';
 import { useAuth } from '@/src/components/Context/AuthContext';
 import { useRouter } from 'expo-router';
 
 export default function ProtectedRoute({ children }: { children: React.ReactNode }) {
-  const { isAuthenticated } = useAuth();
-  const router = useRouter();
-
-  if (!isAuthenticated) {
-    router.push('./Auth/login');
-    return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <ActivityIndicator size="large" />
-        <Text>Redirecting to login...</Text>
-      </View>
-    );
-  }
-
-  return <>{children}</>;
+    const { isAuthenticated } = useAuth();  // Giả sử có hook useAuth() để kiểm tra đăng nhập
+    const router = useRouter();
+  
+    useEffect(() => {
+      if (!isAuthenticated) {
+        router.push('/auth/login');
+      }
+    }, [isAuthenticated]);
+  
+    return isAuthenticated ? children : null;
 }

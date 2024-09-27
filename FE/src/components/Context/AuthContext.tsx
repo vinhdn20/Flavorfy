@@ -17,8 +17,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const login = async (email: string, password: string) => {
     // Simulate API call
-    if (email === 'user@example.com' && password === 'password') {
-      await AsyncStorage.setItem('userToken', 'dummy-token');
+    if (email === '123' && password === '123') {
+      await AsyncStorage.setItem(' ', 'dummy-token');
       setIsAuthenticated(true);
       router.push('/main/home');
     } else {

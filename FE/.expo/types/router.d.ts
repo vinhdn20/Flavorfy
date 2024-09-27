@@ -6,7 +6,7 @@ export * from 'expo-router';
 declare module 'expo-router' {
   export namespace ExpoRouter {
     export interface __routes<T extends string = string> extends Record<string, unknown> {
-      StaticRoutes: `/` | `/..\components\useColorScheme.web` | `/404/not-found` | `/Auth` | `/Auth/login` | `/Auth/register` | `/_sitemap` | `/main` | `/main/home`;
+      StaticRoutes: `/` | `/404/not-found` | `/_sitemap` | `/auth` | `/auth/login` | `/auth/register` | `/main` | `/main/home` | `/main/profile`;
       DynamicRoutes: never;
       DynamicRouteTemplate: never;
     }
