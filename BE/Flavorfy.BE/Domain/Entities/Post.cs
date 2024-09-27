@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    public class Post : BaseEntities
+    public class Post : BaseEntity
     {
         public string Title { get; set; }
         public string Content { get; set; }

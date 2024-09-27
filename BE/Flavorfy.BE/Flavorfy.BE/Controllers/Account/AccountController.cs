@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
+using Repository.Interfaces;
+using Services;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -11,10 +13,15 @@ namespace Flavorfy.BE.Controllers.Account
     public class AccountController : Controller
     {
         private readonly IConfiguration _configuration;
+        private readonly IAccountService _accountService;
+        private readonly IDBRepository _repository;
 
-        public AccountController(IConfiguration configuration)
+        public AccountController(IConfiguration configuration, IDBRepository repository,
+                                   IAccountService accountService)
         {
             _configuration = configuration;
+            _accountService = accountService;
+            _repository = repository;
         }
         public IActionResult Index()
         {
@@ -23,30 +30,34 @@ namespace Flavorfy.BE.Controllers.Account
 
         [HttpPost("login")]
         [AllowAnonymous]
-        public IActionResult Login([FromBody] LoginModel model)
+        public async Task<IActionResult> LoginAsync([FromBody] LoginModel model)
         {
-            if (model.UserName == "test" && model.Password == "password") // Xác thực người dùng
+            try
             {
-                var claims = new[]
-                {
-                new Claim(JwtRegisteredClaimNames.Sub, model.UserName),
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
-            };
-
-                var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
-                var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-
-                var token = new JwtSecurityToken(
-                    issuer: _configuration["Jwt:Issuer"],
-                    audience: _configuration["Jwt:Audience"],
-                    claims: claims,
-                    expires: DateTime.Now.AddMinutes(30),
-                    signingCredentials: creds);
-
-                return Ok(new { token = new JwtSecurityTokenHandler().WriteToken(token) });
+                var token = await _accountService.Login(model.Email, model.Password);
+                return Ok(new { token = token});
             }
+            catch (Exception ex)
+            {
+                BadRequest(ex.Message);
+                throw;
+            }
+        }
 
-            return Unauthorized();
+        [HttpPost("register")]
+        [AllowAnonymous]
+        public async Task<IActionResult> Register([FromBody] RegisterModel model)
+        {
+            try
+            {
+                var token = await _accountService.Register(model.Email, model.Password);
+                return Ok(new { token = token });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+                throw;
+            }
         }
 
         [HttpGet("testLogin")]

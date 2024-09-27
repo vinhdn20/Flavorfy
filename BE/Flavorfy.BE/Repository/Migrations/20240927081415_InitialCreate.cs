@@ -17,10 +17,10 @@ namespace Repository.Migrations
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     UserName = table.Column<string>(type: "text", nullable: false),
-                    UpdateId = table.Column<Guid>(type: "uuid", nullable: false),
-                    UpdateTime = table.Column<long>(type: "bigint", nullable: false),
-                    CreateId = table.Column<Guid>(type: "uuid", nullable: false),
-                    CreateTime = table.Column<long>(type: "bigint", nullable: false)
+                    CreatedById = table.Column<Guid>(type: "uuid", nullable: false),
+                    ModifiedById = table.Column<Guid>(type: "uuid", nullable: false),
+                    CreatedTime = table.Column<long>(type: "bigint", nullable: false),
+                    ModifiedTime = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -32,16 +32,15 @@ namespace Repository.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    UserName = table.Column<string>(type: "text", nullable: false),
                     Password = table.Column<string>(type: "text", nullable: false),
                     Email = table.Column<string>(type: "text", nullable: false),
                     Image = table.Column<string>(type: "text", nullable: false),
                     TypeAccount = table.Column<int>(type: "integer", nullable: false),
                     UserId = table.Column<Guid>(type: "uuid", nullable: false),
-                    UpdateId = table.Column<Guid>(type: "uuid", nullable: false),
-                    UpdateTime = table.Column<long>(type: "bigint", nullable: false),
-                    CreateId = table.Column<Guid>(type: "uuid", nullable: false),
-                    CreateTime = table.Column<long>(type: "bigint", nullable: false)
+                    CreatedById = table.Column<Guid>(type: "uuid", nullable: false),
+                    ModifiedById = table.Column<Guid>(type: "uuid", nullable: false),
+                    CreatedTime = table.Column<long>(type: "bigint", nullable: false),
+                    ModifiedTime = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -64,10 +63,10 @@ namespace Repository.Migrations
                     TypeOfPost = table.Column<int>(type: "integer", nullable: false),
                     NumLike = table.Column<long>(type: "bigint", nullable: false),
                     AccountId = table.Column<Guid>(type: "uuid", nullable: false),
-                    UpdateId = table.Column<Guid>(type: "uuid", nullable: false),
-                    UpdateTime = table.Column<long>(type: "bigint", nullable: false),
-                    CreateId = table.Column<Guid>(type: "uuid", nullable: false),
-                    CreateTime = table.Column<long>(type: "bigint", nullable: false)
+                    CreatedById = table.Column<Guid>(type: "uuid", nullable: false),
+                    ModifiedById = table.Column<Guid>(type: "uuid", nullable: false),
+                    CreatedTime = table.Column<long>(type: "bigint", nullable: false),
+                    ModifiedTime = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -90,10 +89,10 @@ namespace Repository.Migrations
                     ParentCommentId = table.Column<Guid>(type: "uuid", nullable: false),
                     AccountId = table.Column<Guid>(type: "uuid", nullable: false),
                     NumLike = table.Column<long>(type: "bigint", nullable: false),
-                    UpdateId = table.Column<Guid>(type: "uuid", nullable: false),
-                    UpdateTime = table.Column<long>(type: "bigint", nullable: false),
-                    CreateId = table.Column<Guid>(type: "uuid", nullable: false),
-                    CreateTime = table.Column<long>(type: "bigint", nullable: false)
+                    CreatedById = table.Column<Guid>(type: "uuid", nullable: false),
+                    ModifiedById = table.Column<Guid>(type: "uuid", nullable: false),
+                    CreatedTime = table.Column<long>(type: "bigint", nullable: false),
+                    ModifiedTime = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
