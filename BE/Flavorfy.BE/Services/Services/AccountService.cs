@@ -35,6 +35,11 @@ namespace Services
 
         public async Task<string> Register(string email, string password)
         {
+            var isHaveAccount = await _repository.AnyAsync<Account>(x => x.Email.Equals(email));
+            if(isHaveAccount)
+            {
+                throw new Exception("This email is already in use");
+            }
             string hashPass = password.HashForPassword();
             var account = await _repository.AddAsync<Account>(new Account()
             {
