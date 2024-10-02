@@ -7,7 +7,7 @@ services:
             - ASPNETCORE_ENVIRONMENT=docker
             - ASPNETCORE_URLS=http://+:80
         ports:
-          - 80:8080
+          - 80:80
         depends_on:
             postgres:
                 condition: service_healthy
@@ -22,7 +22,7 @@ services:
         volumes:
           - postgres-data:/data/db
         healthcheck:
-          test: ["CMD-SHELL", "pg_isready -U admin"]
+          test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER"]
           interval: 10s
           timeout: 5s
           retries: 5
