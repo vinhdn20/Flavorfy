@@ -16,15 +16,34 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const router = useRouter();
 
   const login = async (email: string, password: string) => {
-    // Simulate API call
-    if (email === '123' && password === '123') {
-      await AsyncStorage.setItem(' ', 'dummy-token');
-      setIsAuthenticated(true);
-      router.push('/main/home');
-    } else {
-      throw new Error('Invalid credentials');
+    try {
+      const response = await fetch('http://localhost:5280/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+  
+      if (!response.ok) {
+        throw new Error('Invalid credentials');
+      }
+  
+      const data = await response.json();
+      console.log(data);
+      const token = data.token;
+      if (token) {
+        await AsyncStorage.setItem('authToken', token);
+        setIsAuthenticated(true);
+        router.push('/main/home');
+      } else {
+        throw new Error('No token found in response');
+      }
+    } catch (error) {
+      console.error('Login failed:', error);
     }
   };
+  
 
   const register = async (email: string, password: string) => {
     // Simulate API call

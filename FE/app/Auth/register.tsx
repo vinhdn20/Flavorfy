@@ -79,7 +79,6 @@ export default function RegisterScreen() {
         </Pressable>
       </View>
 
-      {/* Confirm password input */}
       <View style={styles.passwordContainer}>
         <TextInput
           placeholder="Confirm password"
@@ -96,24 +95,20 @@ export default function RegisterScreen() {
         </Pressable>
       </View>
 
-      {/* Điều khoản dịch vụ */}
       <Text style={styles.terms}>
         By continuing, you agree to our <Text style={styles.link}>terms of service</Text>.
       </Text>
 
-      {/* Nút Sign up */}
       <TouchableOpacity style={styles.signupButton} onPress={handleRegister}>
         <Text style={styles.signupText}>Sign up</Text>
       </TouchableOpacity>
 
-      {/* Divider */}
       <View style={styles.dividerContainer}>
         <View style={styles.dividerLine} />
         <Text style={styles.dividerText}>or</Text>
         <View style={styles.dividerLine} />
       </View>
 
-      {/* Liên kết đến trang login */}
       <View style={styles.signInContainer}>
         <Text>Already have an account?</Text>
         <Text

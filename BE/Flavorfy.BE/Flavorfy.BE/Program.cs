@@ -92,7 +92,7 @@ using (var serviceScope = app.Services.CreateScope())
     var context = serviceScope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
     context.Database.Migrate();
 }
-
+app.UseCors("AllowedCorsOrigins");
 app.UseHttpsRedirection();
 
 app.UseAuthentication();

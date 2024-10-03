@@ -10,10 +10,9 @@
                     builder =>
                     {
                         builder
-                            .SetIsOriginAllowed(IsOriginAllowed)
+                            .AllowAnyOrigin()
                             .AllowAnyHeader()
-                            .AllowAnyMethod()
-                            .AllowCredentials();
+                            .AllowAnyMethod();
                     });
             });
             return services;
@@ -31,7 +30,6 @@
             //if (!isAllowed && env.Contains("DEV", StringComparison.OrdinalIgnoreCase))
             if (!isAllowed)
                 isAllowed = uri.Host.Equals("localhost", StringComparison.OrdinalIgnoreCase);
-
             return isAllowed;
         }
 
