@@ -5,6 +5,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Repository.Interfaces;
 using Services;
+using Flavorfy.BE;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +20,7 @@ var jwtKey = builder.Configuration["Jwt:Key"];
 var jwtIssuer = builder.Configuration["Jwt:Issuer"];
 var jwtAudience = builder.Configuration["Jwt:Audience"];
 
+builder.Services.ConfigureCORS();
 builder.Services.AddAuthentication()
         .AddJwtBearer(options =>
         {

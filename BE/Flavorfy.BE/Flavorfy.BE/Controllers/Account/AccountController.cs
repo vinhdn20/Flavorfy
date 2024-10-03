@@ -1,4 +1,5 @@
-﻿using Flavorfy.BE.Models;
+﻿using Domain.Entities;
+using Flavorfy.BE.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -51,6 +52,7 @@ namespace Flavorfy.BE.Controllers.Account
             try
             {
                 var token = await _accountService.Register(model.Email, model.Password);
+                var test = _repository.GetAllWithTrackingAsync<User>();
                 return Ok(new { token = token });
             }
             catch (Exception ex)
