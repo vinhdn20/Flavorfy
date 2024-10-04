@@ -17,7 +17,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const login = async (email: string, password: string) => {
     try {
-      const response = await fetch('http://localhost:5280/login', {
+      const response = await fetch('http://ec2-44-202-187-109.compute-1.amazonaws.com/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -30,7 +30,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       }
   
       const data = await response.json();
-      console.log(data);
       const token = data.token;
       if (token) {
         await AsyncStorage.setItem('authToken', token);
